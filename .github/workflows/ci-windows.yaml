@@ -14,6 +14,15 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
+      - name: Cache conda
+        uses: actions/cache@v2
+        with:
+          path: ~/conda_pkgs_dir
+          key: ${{ matrix.python-version }}-conda-${{ hashFiles('continuous_integration/environment-windows.yml') }}
+          restore-keys: |
+            ${{ matrix.python-version }}-conda-
+            ${{ matrix.python-version }}-
+
       - name: Setup Conda Environment
         uses: goanpeca/setup-miniconda@v1
         with:
@@ -22,6 +31,7 @@ jobs:
           environment-file: continuous_integration/environment-windows.yml
           activate-environment: dask-distributed
           auto-activate-base: false
+          use-only-tar-bz2: true
 
       - name: Install contextvars
         shell: bash -l {0}
