@@ -51,4 +51,4 @@ jobs:
         shell: bash -l {0}
         env:
           PYTHONFAULTHANDLER: 1
-        run: py.test -m "not avoid_travis" distributed -r s --timeout-method=thread --timeout=300 --durations=20
+        run: py.test -m "not avoid_travis" distributed -r s --timeout-method=thread --timeout=300 --durations=20 -n auto

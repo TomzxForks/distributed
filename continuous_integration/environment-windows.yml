@@ -21,6 +21,7 @@ dependencies:
   - pytest-repeat
   - pytest-timeout
   - pytest-faulthandler
+  - pytest-xdist
   - requests
   - sortedcollections
   - toolz
